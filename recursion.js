@@ -46,3 +46,22 @@ function collectOddValues(arr) {
 console.log(collectOddValues([1,2,3,4,5,6,7,8,9,10,11,13]))
 console.log(collectOddValues([2,4,6,8,10,13]))
 console.log(collectOddValues([4,2]))
+
+// Pure Recusion
+
+function oddValues(arr) {
+    let newArr = []
+
+    if (arr.length === 0) {
+        return newArr
+    }
+    if(arr[0] % 2 !== 0) {
+        newArr.push(arr[0])
+    }
+    newArr = newArr.concat(oddValues(arr.slice(1)))
+    return newArr
+}
+
+console.log(oddValues([1,2,3,4,5,6,7,8,9,10,11,13]))
+console.log(oddValues([2,4,6,8,10,13]))
+console.log(oddValues([4,2]))
