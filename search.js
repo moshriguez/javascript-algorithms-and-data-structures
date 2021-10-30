@@ -20,17 +20,16 @@ const binarySearch = (arr, ele) => {
     while(left <= right) {
         let mid = Math.floor((right - left) / 2) + left
         console.log('mid', mid)
-        if (ele === arr[mid]) return mid
-        if (ele > arr[mid]) {
-            left = mid + 1
+        if (ele === arr[mid]) {return mid}
+        if (ele < arr[mid]) {
+            right = mid - 1
         } else {
-            right = mid
+            left = mid + 1
         }
     }
     return -1
-    // console.log('left:', left, 'mid:', mid, 'right:', right)
 }
 
 console.log(binarySearch([1,2,3,4,5,65], 4))
-// console.log(binarySearch([1,2,3,4,5,65], 0))
+console.log(binarySearch([1,2,3,4,5,65], 0))
 console.log(binarySearch([1,2,3,4,5,65], 65))
