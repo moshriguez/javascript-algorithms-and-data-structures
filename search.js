@@ -45,3 +45,19 @@ function search_binary(arr, ele) {
 console.log(search_binary([2, 4, 6, 7, 8, 11, 23, 34, 45], 4)) // 1
 console.log(search_binary([2, 6, 7, 8, 11, 23, 34, 45], 4)) // -1
 console.log(search_binary([2, 4, 6, 7, 8, 11, 23, 34, 45], 45)) // 8 
+
+// String Search
+
+function stringSearch(long, short) {
+    let count = 0
+    for (let i = 0; i<long.length; i++) {
+        for(let j=0; j<short.length; j++) {
+            if (long[i+j] !== short[j]) break;
+            if (j === short.length - 1) count++;
+        }
+    }
+    return count
+}
+
+console.log(stringSearch('herold laughed haha at sara haha', 'haha'))
+console.log(stringSearch('hhhhha', 'hhhha'))
