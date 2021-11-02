@@ -87,7 +87,9 @@ function insertionSort3(arr) {
 // Merge Sort
 
 function mergeSort(arr) {
-
+    if(arr.length <= 1) return arr;
+    const mid = Math.floor(arr.length / 2)
+    return merge(mergeSort(arr.slice(0, mid)), mergeSort(arr.slice(mid)))
 }
 
 function merge(arr1, arr2) {
@@ -106,4 +108,4 @@ function merge(arr1, arr2) {
     return newArr
 }
 
-console.log(merge([1,3,5,7], [0,6,8,10,11]))
+console.log(mergeSort([1,3,5,7,0,6,8,3,11]))
