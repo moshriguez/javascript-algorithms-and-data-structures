@@ -82,4 +82,28 @@ function insertionSort3(arr) {
 
 // console.log(insertionSort3([1,3,4,2,6,8,2,3]))
 // console.log(insertionSort3([8,1,2,3,4,5,6,7]))
-console.log(insertionSort([1,2,3,4,5,6,7,0]))
+// console.log(insertionSort([1,2,3,4,5,6,7,0]))
+
+// Merge Sort
+
+function mergeSort(arr) {
+
+}
+
+function merge(arr1, arr2) {
+    const newArr = []
+    let i1 = 0
+    let i2 = 0
+    while(i1<arr1.length || i2<arr2.length){
+        if(arr1[i1] <= arr2[i2] || i2 >= arr2.length) {
+            newArr.push(arr1[i1])
+            i1++
+        } else if (arr2[i2] < arr1[i1] || i1 >= arr1.length){
+            newArr.push(arr2[i2])
+            i2++
+        }
+    }
+    return newArr
+}
+
+console.log(merge([1,3,5,7], [0,6,8,10,11]))
