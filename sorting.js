@@ -162,3 +162,17 @@ function mostDigits(arr) {
     return count
 }
 
+function radixSort(arr) {
+    const maxDigits = mostDigits(arr)
+    for(let k=0; k<maxDigits; k++) {
+        const buckets = Array.from({length: 10}, () => [])
+        for(let i=0; i<arr.length; i++) {
+            let j = getDigit(arr[i], k)
+            buckets[j].push(arr[i])
+        }
+        arr = buckets.flat()
+    }
+    return arr
+}
+
+console.log(radixSort([23, 1, 34, 456, 2345, 75, 133, 3535, 975]))
