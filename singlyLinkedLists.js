@@ -14,6 +14,7 @@ class SinglyLinkedList{
         this.head = null
         this.tail = null
     }
+    // Insertion
     push(val){
         const newNode = new Node(val)
         if (!this.head) {
@@ -26,6 +27,18 @@ class SinglyLinkedList{
         this.length++
         return this
     }
+    unshift(val){
+        const newNode = new Node(val)
+        if(!this.head){
+            this.head = newNode
+            this.tail = this.head
+        } else {
+            newNode.next = this.head
+            this.head = newNode
+        }
+        this.length++
+        return this
+    }
     print() {
         let current = this.head
         while(current) {
@@ -33,6 +46,7 @@ class SinglyLinkedList{
             current = current.next
         }
     }
+    // Deletion
     pop() {
         if(!this.head) return undefined
         let current = this.head
@@ -62,4 +76,5 @@ class SinglyLinkedList{
         }
         return current
     }
+
 }
