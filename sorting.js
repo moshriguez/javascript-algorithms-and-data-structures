@@ -108,4 +108,31 @@ function merge(arr1, arr2) {
     return newArr
 }
 
-console.log(mergeSort([1,3,5,7,0,6,8,3,11]))
+// console.log(mergeSort([1,3,5,7,0,6,8,3,11]))
+
+// Quick Sort
+
+function quickSort(arr) {
+
+}
+
+function pivot(arr, start = 0, end = arr.length - 1) {
+    const swap = (arr, i1, i2) => {
+        [arr[i1], arr[i2]] = [arr[i2], arr[i1]]  
+    }
+    // we are assuming for now that the pivot is always the first element
+    const pivot = arr[start]
+    let pivotIdx = start
+    for (let i=start+1; i<=end; i++) {
+        if(pivot > arr[i]) {
+            pivotIdx++
+            swap(arr, i, pivotIdx)
+        }
+    }
+    // swap the pivot from the start to the swap point
+    swap(arr, start, pivotIdx)
+    return pivotIdx
+}
+
+const sample = [2, 5, 1, 7, 5, 9, 2, 5, 0]
+console.log(pivot(sample), sample)
