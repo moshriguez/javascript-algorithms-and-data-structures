@@ -143,4 +143,11 @@ function pivot(arr, start = 0, end = arr.length - 1) {
 }
 
 const sample = [2, 5, 1, 7, 5, 9, 2, 5, 0]
-console.log(quickSort(sample))
+// console.log(quickSort(sample))
+
+// Radix Sort
+// helpers
+function getDigit(num, place) {
+    return Math.floor(Math.abs(num) / Math.pow(10, place)) % 10
+}
+
