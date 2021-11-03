@@ -156,3 +156,9 @@ function digitCount(num) {
     return Math.ceil(Math.log10(Math.abs(num)))
 }
 
+function mostDigits(arr) {
+    let count = 0
+    arr.forEach(el => count = Math.max(digitCount(el), count))
+    return count
+}
+
