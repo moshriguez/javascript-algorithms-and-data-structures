@@ -151,3 +151,8 @@ function getDigit(num, place) {
     return Math.floor(Math.abs(num) / Math.pow(10, place)) % 10
 }
 
+function digitCount(num) {
+    if(num === 0 || num === 1) return 1
+    return Math.ceil(Math.log10(Math.abs(num)))
+}
+
