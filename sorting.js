@@ -112,8 +112,16 @@ function merge(arr1, arr2) {
 
 // Quick Sort
 
-function quickSort(arr) {
+function quickSort(arr, left = 0, right = arr.length -1) {
+    if (left < right) {
+        let pivotInx = pivot(arr, left, right)
+        // left
+        quickSort(arr, left, pivotInx - 1)
+        // right
+        quickSort(arr, pivotInx + 1, right)
+    }
 
+    return arr
 }
 
 function pivot(arr, start = 0, end = arr.length - 1) {
@@ -135,4 +143,4 @@ function pivot(arr, start = 0, end = arr.length - 1) {
 }
 
 const sample = [2, 5, 1, 7, 5, 9, 2, 5, 0]
-console.log(pivot(sample), sample)
+console.log(quickSort(sample))
