@@ -87,4 +87,12 @@ class SinglyLinkedList{
         }
         return current
     }
+    set(i, val) {
+        let node = this.get(i)
+        if(node) {
+            node.val = val
+            return true
+        }
+        return false
+    }
 }
