@@ -39,13 +39,6 @@ class SinglyLinkedList{
         this.length++
         return this
     }
-    print() {
-        let current = this.head
-        while(current) {
-            console.log(current.val)
-            current = current.next
-        }
-    }
     // Deletion
     pop() {
         if(!this.head) return undefined
@@ -76,5 +69,22 @@ class SinglyLinkedList{
         }
         return current
     }
-
+    // Utilities
+    print() {
+        let current = this.head
+        while(current) {
+            console.log(current.val)
+            current = current.next
+        }
+    }
+    get(i) {
+        if(i<0 || i >= this.length) return null
+        let currIdx = 0
+        let current = this.head
+        while(currIdx !== i){
+            current = current.next
+            currIdx++
+        }
+        return current
+    }
 }
