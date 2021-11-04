@@ -14,7 +14,7 @@ class SinglyLinkedList{
         this.head = null
         this.tail = null
     }
-    // Insertion
+    // Insertion - BigO = O(1)
     push(val){
         const newNode = new Node(val)
         if (!this.head) {
@@ -50,7 +50,7 @@ class SinglyLinkedList{
         this.length++
         return true
     }
-    // Deletion
+    // Deletion - BigO = O(n) or O(1) for shift()
     pop() {
         if(!this.head) return undefined
         let current = this.head
@@ -80,7 +80,18 @@ class SinglyLinkedList{
         }
         return current
     }
-    // Utilities
+    remove(i) {
+        if(i<0 || i >= this.length) return undefined
+        if(i === this.length-1) return this.pop()
+        if(i === 0) return this.shift()
+        let before = this.get(i-1)
+        let removedNode = before.next
+        before.next = removedNode.next
+        removedNode.next = null
+        this.length--
+        return removedNode
+    }
+    // Utilities - BigO = O(n) for all below
     print() {
         let current = this.head
         while(current) {
@@ -106,4 +117,36 @@ class SinglyLinkedList{
         }
         return false
     }
+    reverse() {
+        if(this.length < 2) return this
+        let prev = null
+        let current = this.head
+        let next = current.next
+        this.tail = current
+        while(current) {
+            current.next = prev
+            prev = current
+            current = next
+            if(next) {
+                next = next.next
+            } else {
+                this.head = prev
+            }
+        }
+        return this
+    }
+    // teacher's reverse:
+    // reverse() {
+    //     let node = this.head
+    //     this.head = this.tail
+    //     this.tail = node
+    //     let prev = null
+    //     for(let i=0; i<this.length; i++) {
+    //         let next = node.next
+    //         node.next = prev
+    //         prev = node
+    //         node = next
+    //     }
+    //     return this
+    // }
 }
