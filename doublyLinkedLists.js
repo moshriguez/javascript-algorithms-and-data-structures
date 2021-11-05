@@ -32,12 +32,12 @@ class DoublyLinkedList {
       this.head = newNode;
       this.tail = newNode;
     } else {
-        this.head.prev = newNode
-        newNode.next = this.head
-        this.head = newNode
+      this.head.prev = newNode;
+      newNode.next = this.head;
+      this.head = newNode;
     }
-    this.length++
-    return this
+    this.length++;
+    return this;
   }
   // Deletion
   pop() {
@@ -58,12 +58,12 @@ class DoublyLinkedList {
     if (!this.head) return undefined;
     let oldHead = this.head;
     if (this.length === 1) {
-        this.head = null;
-        this.tail = null;
+      this.head = null;
+      this.tail = null;
     } else {
-        this.head = oldHead.next;
-        this.head.prev = null;
-        oldHead.next = null;
+      this.head = oldHead.next;
+      this.head.prev = null;
+      oldHead.next = null;
     }
     this.length--;
     return oldHead;
@@ -75,6 +75,29 @@ class DoublyLinkedList {
       console.log(current.val);
       current = current.next;
     }
+  }
+  get(i) {
+    if (i < 0 || i >= this.length) return null
+    let counter
+    let current
+    if (i <= Math.floor(this.length / 2)) {
+        counter = 0
+        current = this.head
+        while (counter !== i) {
+            current = current.next
+            counter++
+        }
+        return current
+    } else {
+        counter = this.length - 1
+        current = this.tail
+        while (counter !== i) {
+            current = current.prev
+            counter--
+        }
+        return current
+    }
+
   }
 }
 
