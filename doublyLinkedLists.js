@@ -39,6 +39,19 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+  insert(i, val) {
+    if (i < 0 || i > this.length) return false;
+    if (i === 0) return !!this.unshift(val);
+    if (i === this.length) return !!this.push(val);
+    let newNode = new Node(val);
+    let before = this.get(i - 1);
+    newNode.next = before.next;
+    newNode.prev = before;
+    newNode.next.prev = newNode;
+    before.next = newNode;
+    this.length++;
+    return true;
+  }
   // Deletion
   pop() {
     if (!this.tail) return undefined;
@@ -95,6 +108,11 @@ class DoublyLinkedList {
       }
     }
     return current;
+  }
+  set(i, val) {
+    let node = this.get(i);
+    if (node) node.val = val;
+    return !!node;
   }
 }
 
