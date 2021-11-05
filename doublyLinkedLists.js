@@ -78,8 +78,7 @@ class DoublyLinkedList {
   }
   get(i) {
     if (i < 0 || i >= this.length) return null;
-    let counter;
-    let current;
+    let counter, current;
     if (i <= Math.floor(this.length / 2)) {
       counter = 0;
       current = this.head;
