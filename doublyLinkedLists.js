@@ -77,27 +77,25 @@ class DoublyLinkedList {
     }
   }
   get(i) {
-    if (i < 0 || i >= this.length) return null
-    let counter
-    let current
+    if (i < 0 || i >= this.length) return null;
+    let counter;
+    let current;
     if (i <= Math.floor(this.length / 2)) {
-        counter = 0
-        current = this.head
-        while (counter !== i) {
-            current = current.next
-            counter++
-        }
-        return current
+      counter = 0;
+      current = this.head;
+      while (counter !== i) {
+        current = current.next;
+        counter++;
+      }
     } else {
-        counter = this.length - 1
-        current = this.tail
-        while (counter !== i) {
-            current = current.prev
-            counter--
-        }
-        return current
+      counter = this.length - 1;
+      current = this.tail;
+      while (counter !== i) {
+        current = current.prev;
+        counter--;
+      }
     }
-
+    return current;
   }
 }
 
