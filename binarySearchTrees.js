@@ -42,6 +42,19 @@ class BinarySearchTree {
     }
     return this;
   }
+  find(val) {
+    if (!this.root) return false;
+    let current = this.root;
+    let found = false
+    while (current && !found) {
+      if (current.val === val) return current;
+      else {
+        if (val > current.val) current = current.right;
+        else current = current.left;
+      }
+    }
+    return found
+  }
 }
 
 //      10
@@ -49,10 +62,10 @@ class BinarySearchTree {
 // 2  7  11  16
 
 var tree = new BinarySearchTree();
-tree.insert(10)
-tree.insert(5)
-tree.insert(13)
-tree.insert(11)
-tree.insert(2)
-tree.insert(16)
-tree.insert(7)
+tree.insert(10);
+tree.insert(5);
+tree.insert(13);
+tree.insert(11);
+tree.insert(2);
+tree.insert(16);
+tree.insert(7);
