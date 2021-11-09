@@ -55,6 +55,60 @@ class BinarySearchTree {
     }
     return found
   }
+  // breadth first search
+  bfs() {
+    let q = []
+    let visited = []
+    if(!this.root) return visited
+    let current
+    q.push(this.root)
+    while(q.length) {
+      current = q.shift()
+      visited.push(current.val)
+      if(current.left) q.push(current.left)
+      if(current.right) q.push(current.right)
+    }
+    return visited
+  }
+  // depth first search - pre order
+  dfsPreO() {
+    let visited = []
+    let current = this.root
+    if(!current) return visited
+    function traverse(node) {
+      visited.push(node.val)
+      if(node.left) traverse(node.left)
+      if(node.right) traverse(node.right)
+    }
+    traverse(current)
+    return visited
+  }
+  // depth first search - post order
+  dfsPostO() {
+    let visited = []
+    let current = this.root
+    if(!current) return visited
+    function traverse(node) {
+      if(node.left) traverse(node.left)
+      if(node.right) traverse(node.right)
+      visited.push(node.val)
+    }
+    traverse(current)
+    return visited
+  }
+  // depth first search - in order
+  dfsInO() {
+    let visited = []
+    let current = this.root
+    if(!current) return visited
+    function traverse(node) {
+      node.left && traverse(node.left)
+      visited.push(node.val)
+      node.right && traverse(node.right)
+    }
+    traverse(current)
+    return visited
+  }
 }
 
 //      10
@@ -69,3 +123,4 @@ tree.insert(11);
 tree.insert(2);
 tree.insert(16);
 tree.insert(7);
+var noTree = new BinarySearchTree();
