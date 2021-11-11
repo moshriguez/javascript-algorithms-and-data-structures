@@ -87,3 +87,69 @@ heap.insert(18)
 heap.insert(27)
 heap.insert(12)
 heap.insert(55)
+
+class Node {
+    constructor(val, priority) {
+        this.val = val
+        this.priority = priority
+    } 
+}
+
+class PriorityQueue {
+    constructor() {
+        this.values = []
+    }
+    enqueue(val, priority) {
+        const newNode = new Node(val, priority)
+        this.values.push(newNode)
+        this.bubbleUp()
+    }
+    bubbleUp() {
+        let idx = this.values.length - 1
+        while(idx > 0) {
+            let parentIdx = Math.floor((idx-1)/2)
+            if(this.values[idx].priority >= this.values[parentIdx].priority) break;
+            this.swap(idx, parentIdx)
+            idx = parentIdx
+        }
+    }
+    swap(i1, i2) {
+        [this.values[i1], this.values[i2]] = [this.values[i2], this.values[i1]]
+    }
+    dequeue() {
+        if(!this.values.length) return undefined
+        this.swap(0, this.values.length-1)
+        const min = this.values.pop()
+        this.trickleDown()
+        return min.val
+    }
+    trickleDown() {
+        let idx = 0, leftIdx = 1, rightIdx = 2, min
+        if(!this.values[leftIdx]) return
+        else if(!this.values[rightIdx]) min = this.values[leftIdx].priority
+        else {
+            min = Math.min(this.values[leftIdx].priority, this.values[rightIdx].priority)
+        }
+        while(this.values[idx].priority > min) {
+            let child = this.values[leftIdx].priority === min ? leftIdx : rightIdx
+            this.swap(idx, child)
+            idx = child
+            leftIdx = 2*idx + 1
+            rightIdx = 2*idx + 2
+            if(!this.values[leftIdx]) return
+            else if(!this.values[rightIdx]) min = this.values[leftIdx].priority
+            else {
+                min = Math.min(this.values[leftIdx].priority, this.values[rightIdx].priority)
+            }
+        }
+    }
+}
+
+let pq = new PriorityQueue
+pq.enqueue(41, 1)
+pq.enqueue(39, 2)
+pq.enqueue(33, 3)
+pq.enqueue(18, 5)
+pq.enqueue(27, 4)
+pq.enqueue(12, 0)
+pq.enqueue(55, 7)
