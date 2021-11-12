@@ -34,6 +34,20 @@ class HashTable {
         return undefined
         // this.keyMap[idx].find(ele => ele[0] === key)
     }
+    keys() {
+        const keys = []
+        for(let item of this.keyMap) {
+            if(item) item.forEach(pair => keys.push(pair[0]))
+        }
+        return keys
+    }
+    values() {
+        const values = new Set()
+        for (let item of this.keyMap) {
+            if(item) item.forEach(pair => values.add(pair[1]))
+        }
+        return values
+    }
 }
 
 let ht = new HashTable(5)
