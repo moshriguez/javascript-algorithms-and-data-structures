@@ -34,19 +34,86 @@ class Graph {
         this.adjacencyList[v].forEach(v2 => this.removeEdge(v, v2))
         delete this.adjacencyList[v]
     }
+    depthFirstRec(start) {
+        const results = []
+        const visited = {}
+        const dfs = (v) => {
+            if(!v) return
+            results.push(v)
+            visited[v] = true
+            this.adjacencyList[v].forEach(n => {
+                if(!visited[n]) {
+                    dfs(n)
+                }
+            })
+        }
+        dfs(start)
+        return results
+    }
+    depthFirstIt(start) {
+        let stack = [start]
+        const results = []
+        const visited = {}
+        let current;
+
+        visited[start] = true
+        while(stack.length) {
+            current = stack.pop()
+            results.push(current)
+            this.adjacencyList[current].forEach(n => {
+                if(!visited[n]){
+                    visited[n] = true
+                    stack.push(n)
+                }
+            })
+        }
+        return results
+    }
+    breadthFirst(start) {
+        const q = [start]
+        const results = []
+        const visited = {}
+        let current;
+
+        visited[start] = true
+        while(q.length) {
+            current = q.shift()
+            results.push(current)
+            this.adjacencyList[current].forEach(n => {
+                if(!visited[n]){
+                    visited[n] = true
+                    q.push(n)
+                }
+            })
+        }
+        return results
+    }
 }
 
 let g = new Graph()
-g.addVertex('Dallas')
-g.addVertex('Seattle')
-g.addVertex('London')
-g.addVertex('Augusta')
-g.addVertex('Atlanta')
-g.addEdge('Dallas', 'Seattle')
-g.addEdge('Dallas', 'London')
-g.addEdge('Dallas', 'Atlanta')
-g.addEdge('Atlanta', 'Seattle')
-g.addEdge('Atlanta', 'London')
-g.addEdge('Atlanta', 'Augusta')
-g.addEdge('Augusta', 'Seattle')
-g.addEdge('Augusta', 'Dallas')
+// g.addVertex('Dallas')
+// g.addVertex('Seattle')
+// g.addVertex('London')
+// g.addVertex('Augusta')
+// g.addVertex('Atlanta')
+// g.addEdge('Dallas', 'Seattle')
+// g.addEdge('Dallas', 'London')
+// g.addEdge('Dallas', 'Atlanta')
+// g.addEdge('Atlanta', 'Seattle')
+// g.addEdge('Atlanta', 'London')
+// g.addEdge('Atlanta', 'Augusta')
+// g.addEdge('Augusta', 'Seattle')
+// g.addEdge('Augusta', 'Dallas')
+g.addVertex('a')
+g.addVertex('b')
+g.addVertex('c')
+g.addVertex('d')
+g.addVertex('e')
+g.addVertex('f')
+g.addEdge('a', 'b')
+g.addEdge('a', 'c')
+g.addEdge('b', 'd')
+g.addEdge('c', 'e')
+g.addEdge('d', 'e')
+g.addEdge('d', 'f')
+g.addEdge('e', 'f')
