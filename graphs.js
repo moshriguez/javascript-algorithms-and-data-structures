@@ -70,23 +70,63 @@ class Graph {
         return results
     }
     breadthFirst(start) {
-        const q = [start]
+        const q = new Queue()
+        q.enqueue(start)
         const results = []
         const visited = {}
         let current;
 
         visited[start] = true
-        while(q.length) {
-            current = q.shift()
+        while(q.size) {
+            current = q.dequeue()
             results.push(current)
             this.adjacencyList[current].forEach(n => {
                 if(!visited[n]){
                     visited[n] = true
-                    q.push(n)
+                    q.enqueue(n)
                 }
             })
         }
         return results
+    }
+}
+
+class Node {
+    constructor(val) {
+        this.val = val
+        this.next = null
+    }
+}
+
+class Queue {
+    constructor() {
+        this.first = null
+        this.last = null
+        this.size = 0
+    }
+    // enqueue is push from SLL (singly linked list)
+    enqueue(val) {
+        let newNode = new Node(val)
+        if(!this.first) {
+            this.first = newNode
+            this.last = newNode
+        } else {
+            this.last.next = newNode
+            this.last = newNode
+        }
+        return ++this.size
+    }
+    // dequeue is shift from SLL
+    dequeue() {
+        if(!this.first) return null
+        let node = this.first
+        if(this.size === 1) {
+            this.last = null
+        }
+        this.first = node.next
+        node.next = null
+        this.size--
+        return node.val
     }
 }
 
@@ -117,3 +157,10 @@ g.addEdge('c', 'e')
 g.addEdge('d', 'e')
 g.addEdge('d', 'f')
 g.addEdge('e', 'f')
+//          a
+//         / \
+//        b   c
+//        |   |
+//        d---e
+//         \ /
+//          f
